@@ -1,0 +1,36 @@
+%h1 Configuration
+%p You will need to configure this first so it can connect to your Hue hub.
+
+#error.alert.alert-error.hide
+  %strong Error!
+  %span
+
+%form.form-horizontal{:method => "POST", :action => "/config"}
+  - unless $config[:ip]
+    %input{:type => :hidden, :id => "username", :value => @username}
+
+  .control-group
+    %label.control-label{:for => "ip"} Hub IP
+    .controls
+      %input{:type => :text, :id => "ip", :value => $config[:ip], :placeholder => "192.168.1.1"}
+      %span.help-inline
+
+  - unless $config[:ip]
+    .control-group
+      %label.control-label{:for => "devicetype"} Name
+      .controls
+        %input{:type => :text, :id => "devicetype", :placeholder => "Hue Controller"}
+        %span.help-inline
+
+  .control-group
+    .controls
+      %input{:type => :submit, :class => :btn, :value => "Configure", "data-loading-text" => "Configuring..."}
+
+#auth-modal.modal.hide.fade
+  .modal-header
+    %h3 Authorization Needed
+  .modal-body
+    %p
+      We need to create an account on your hub so we can make API requests.
+    %p
+      Please press the button on your Hue hub and then wait a second for this page to update.

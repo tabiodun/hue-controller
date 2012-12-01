@@ -1,10 +1,10 @@
-get "/setup" do
+get "/config" do
   @username = Digest::SHA1.hexdigest(rand(30 ** 30).to_s)
 
-  haml :setup
+  haml :config, :locals => {:action => $config[:ip] ? "config-update" : "config-new", :no_action_css => true}
 end
 
-post "/setup" do
+post "/config" do
   url = URI("http://#{params[:ip]}/api")
 
   http = Net::HTTP.new(url.host, url.port)
@@ -30,4 +30,14 @@ post "/setup" do
 
     [200, "success"]
   end
+end
+
+put "/config" do
+  $config[:ip] = params[:ip]
+
+  File.open("./config/config.yml", "w+") do |f|
+    f.write($config.to_yaml)
+  end
+
+  [200, "success"]
 end

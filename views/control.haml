@@ -1,158 +1,157 @@
-.container
-  %h1 Light Control
-  %p Control the lights, schedule a change, etc.
+%h1 Light Control
+%p Control the lights, schedule a change, etc.
 
-  #error.alert.alert-error.hide
-    %strong Error!
-    %span
+#error.alert.alert-error.hide
+  %strong Error!
+  %span
 
 
-  %form.form-horizontal{:method => "POST", :action => "/job"}
-    .control-group
-      %label.control-label{:for => "job_name"} Name
-      .controls
-        %input.input-medium{:type => "text", :id => "job_name", :placeholder => "Wakeup"}
-        %span.help-inline
+%form.form-horizontal{:method => "POST", :action => "/job"}
+  .control-group
+    %label.control-label{:for => "job_name"} Name
+    .controls
+      %input.input-medium{:type => "text", :id => "job_name", :placeholder => "Wakeup"}
+      %span.help-inline
 
-    .control-group
-      %label.control-label{:for => "job_on"} Status
-      .controls
-        %select.input-small{:id => "job_on"}
-          %option{:value => "true"} On
-          %option{:value => "false"} Off
-        %span.help-inline
+  .control-group
+    %label.control-label{:for => "job_on"} Status
+    .controls
+      %select.input-small{:id => "job_on"}
+        %option{:value => "true"} On
+        %option{:value => "false"} Off
+      %span.help-inline
 
-    .control-group
-      %label.control-label{:for => "job_bri"} Brightness
-      .controls
-        %input.input-mini{:type => "number", :id => "job_bri", :placeholder => 254, :min => 0, :max => 254, :step => 1}
-        %span.help-inline
-          0 (off) - 254 (max brightness)
+  .control-group
+    %label.control-label{:for => "job_bri"} Brightness
+    .controls
+      %input.input-mini{:type => "number", :id => "job_bri", :placeholder => 254, :min => 0, :max => 254, :step => 1}
+      %span.help-inline
+        0 (off) - 254 (max brightness)
 
-    .tabbable.tabs-left
-      %ul.nav.nav-tabs
-        %li.active
-          %a{:href => "#huesat", "data-toggle" => "huesat"} Hue/Saturation
-        %li
-          %a{:href => "#ct", "data-toggle" => "ct"} Color Temperture
+  .tabbable.tabs-left
+    %ul.nav.nav-tabs
+      %li.active
+        %a{:href => "#huesat", "data-toggle" => "huesat"} Hue/Saturation
+      %li
+        %a{:href => "#ct", "data-toggle" => "ct"} Color Temperture
 
-      .tab-content
-        .tab-pane.active#huesat
-          .control-group
-            %label.control-label{:for => "job_hue"} Hue
-            .controls
-              %input.input-mini{:type => "number", :id => "job_hue", :placeholder => 3100, :min => 0, :max => 65535, :step => 1}
-              %input.btn.btn-info.btn-mini{:type => :button, :value => "Color Picker"}
-              %span.help-inline
-                0 - 65,535
+    .tab-content
+      .tab-pane.active#huesat
+        .control-group
+          %label.control-label{:for => "job_hue"} Hue
+          .controls
+            %input.input-mini{:type => "number", :id => "job_hue", :placeholder => 3100, :min => 0, :max => 65535, :step => 1}
+            %input.btn.btn-info.btn-mini{:type => :button, :value => "Color Picker"}
+            %span.help-inline
+              0 - 65,535
 
-          .control-group
-            %label.control-label{:for => "job_sat"} Saturation
-            .controls
-              %input.input-mini{:type => "number", :id => "job_sat", :placeholder => 254, :min => 0, :max => 254, :step => 1}
-              %span.help-inline
-                0 - 254
+        .control-group
+          %label.control-label{:for => "job_sat"} Saturation
+          .controls
+            %input.input-mini{:type => "number", :id => "job_sat", :placeholder => 254, :min => 0, :max => 254, :step => 1}
+            %span.help-inline
+              0 - 254
 
-        .tab-pane#ct
-          .control-group
-            %label.control-label{:for => "job_ct"} Color Temperture
-            .controls
-              %input.input-mini{:type => "number", :id => "job_ct", :placeholder => 154, :min => 154, :max => 500, :step => 1}
-              %span.help-inline
-                154 (cold/white) - 500 (warm)
+      .tab-pane#ct
+        .control-group
+          %label.control-label{:for => "job_ct"} Color Temperture
+          .controls
+            %input.input-mini{:type => "number", :id => "job_ct", :placeholder => 154, :min => 154, :max => 500, :step => 1}
+            %span.help-inline
+              154 (cold/white) - 500 (warm)
 
-    .control-group
-      %label.control-label{:for => "job_alert"} Alert
-      .controls
-        %select.input-medium{:id => "job_alert"}
-          %option{:value => ""} None
-          %option{:value => "select"} Flash Once
-          %option{:value => "lselect"} Flash Repeatedly
+  .control-group
+    %label.control-label{:for => "job_alert"} Alert
+    .controls
+      %select.input-medium{:id => "job_alert"}
+        %option{:value => ""} None
+        %option{:value => "select"} Flash Once
+        %option{:value => "lselect"} Flash Repeatedly
 
-        %span.help-inline
+      %span.help-inline
 
-    .control-group
-      %label.control-label{:for => "job_transitiontime"} Transition Time
-      .controls
-        %input.input-mini{:type => "number", :id => "job_transitiontime", :placeholder => 10, :min => 0, :step => 1}
-        %span.help-inline
-          In 1/10s (0 = instant, 5 = 0.5, 10 = 1.0)
+  .control-group
+    %label.control-label{:for => "job_transitiontime"} Transition Time
+    .controls
+      %input.input-mini{:type => "number", :id => "job_transitiontime", :placeholder => 10, :min => 0, :step => 1}
+      %span.help-inline
+        In 1/10s (0 = instant, 5 = 0.5, 10 = 1.0)
 
-    .control-group#dates
-      %label.control-label{:for => "job_starttime"} Start Time
-      .controls
-        .push
-          - now = Time.now
-          %select.input-small{:id => "job_start_year"}
-            - (now.year..(now.year + 1)).each do |year|
-              %option{:value => year, :selected => now.year == year}= year
-          %strong -
-          %select.input-mini{:id => "job_start_month"}
-            - (1..12).each do |month|
-              %option{:value => month, :selected => now.month == month}= month
-          %strong -
-          %select.input-mini{:id => "job_start_day"}
-            - (1..31).each do |day|
-              %option{:value => day, :selected => now.day == day}= day
-          %strong.at at
-          %select.input-mini{:id => "job_start_hours"}
-            - current_hour = now.strftime("%I").to_i
-            - (1..12).each do |hour|
-              %option{:value => hour, :selected => current_hour == hour}= hour
-          %strong :
-          %select.input-mini{:id => "job_start_minutes"}
-            - (0..59).each do |minute|
-              %option{:value => minute, :selected => now.min == minute}= minute
-          %strong :
-          %select.input-mini{:id => "job_start_seconds"}
-            - (0..59).each do |second|
-              %option{:value => second, :selected => now.sec == second}= second
-          %select.input-mini{:id => "job_start_meridian"}
-            - current_meridian = now.strftime("%P")
-            %option{:value => "am", :selected => current_meridian == "am"} AM
-            %option{:value => "pm", :selected => current_meridian == "pm"} PM
+  .control-group#dates
+    %label.control-label{:for => "job_starttime"} Start Time
+    .controls
+      .push
+        - now = Time.now
+        %select.input-small{:id => "job_start_year"}
+          - (now.year..(now.year + 1)).each do |year|
+            %option{:value => year, :selected => now.year == year}= year
+        %strong -
+        %select.input-mini{:id => "job_start_month"}
+          - (1..12).each do |month|
+            %option{:value => month, :selected => now.month == month}= month
+        %strong -
+        %select.input-mini{:id => "job_start_day"}
+          - (1..31).each do |day|
+            %option{:value => day, :selected => now.day == day}= day
+        %strong.at at
+        %select.input-mini{:id => "job_start_hours"}
+          - current_hour = now.strftime("%I").to_i
+          - (1..12).each do |hour|
+            %option{:value => hour, :selected => current_hour == hour}= hour
+        %strong :
+        %select.input-mini{:id => "job_start_minutes"}
+          - (0..59).each do |minute|
+            %option{:value => minute, :selected => now.min == minute}= minute
+        %strong :
+        %select.input-mini{:id => "job_start_seconds"}
+          - (0..59).each do |second|
+            %option{:value => second, :selected => now.sec == second}= second
+        %select.input-mini{:id => "job_start_meridian"}
+          - current_meridian = now.strftime("%P")
+          %option{:value => "am", :selected => current_meridian == "am"} AM
+          %option{:value => "pm", :selected => current_meridian == "pm"} PM
 
-        %span.help-inline
+      %span.help-inline
 
-    .control-group
-      %label.control-label{:for => "job_interval"} Run Interval
-      .controls
-        %input.input-mini{:type => "number", :id => "job_interval", :value => 1, :placeholder => 0, :min => 1, :step => 1}
-        %span.help-inline
-          Seconds to wait before running this again (min 1)
+  .control-group
+    %label.control-label{:for => "job_interval"} Run Interval
+    .controls
+      %input.input-mini{:type => "number", :id => "job_interval", :value => 1, :placeholder => 0, :min => 1, :step => 1}
+      %span.help-inline
+        Seconds to wait before running this again (min 1)
 
-    .control-group
-      %label.control-label{:for => "job_maxruns"} Max Runs
-      .controls
-        %input.input-mini{:type => "number", :id => "job_maxruns", :value => 1, :placeholder => 1, :min => 1, :max => 100, :step => 1}
-        %span.help-inline
-          How many times to run this (max 100)
+  .control-group
+    %label.control-label{:for => "job_maxruns"} Max Runs
+    .controls
+      %input.input-mini{:type => "number", :id => "job_maxruns", :value => 1, :placeholder => 1, :min => 1, :max => 100, :step => 1}
+      %span.help-inline
+        How many times to run this (max 100)
 
-    .control-group
-      %label.control-label{:for => "job_reset"} Reset Remainder
-      .controls
-        %select.input-small{:id => "job_reset"}
-          %option{:value => "true"} Yes
-          %option{:value => "false", :selected => true} No
-        %span.help-inline
-          Will turn any lights not specified below off
+  .control-group
+    %label.control-label{:for => "job_reset"} Reset Remainder
+    .controls
+      %select.input-small{:id => "job_reset"}
+        %option{:value => "true"} Yes
+        %option{:value => "false", :selected => true} No
+      %span.help-inline
+        Will turn any lights not specified below off
 
-    .control-group.tab-pane.active#lights
-      %label.control-label{:for => "job_lights"} Lights
-      .controls
-        %select{:id => "job_lights", :multiple => "multiple", :disabled => "disabled"}
-          %option{:value => ""} Loading...
+  .control-group.tab-pane.active#lights
+    %label.control-label{:for => "job_lights"} Lights
+    .controls
+      %select{:id => "job_lights", :multiple => "multiple", :disabled => "disabled"}
+        %option{:value => ""} Loading...
 
-        %span.help-inline
+      %span.help-inline
 
-    .control-group
-      .controls
-        %input{:type => :submit, :class => :btn, :value => "Schedule", "data-loading-text" => "Scheduling...", :disabled => true}
+  .control-group
+    .controls
+      %input{:type => :submit, :class => :btn, :value => "Schedule", "data-loading-text" => "Scheduling...", :disabled => true}
 
-  #progress-modal.modal.hide.fade
-    .modal-header
-      %h3 Scheduling
-    .modal-body
-      %p We're scheduling the light commands, this might take a few seconds depending on how many commands need to be scheduled.
-    .modal-footer
-      %span.status Processing...
+#progress-modal.modal.hide.fade
+  .modal-header
+    %h3 Scheduling
+  .modal-body
+    %p We're scheduling the light commands, this might take a few seconds depending on how many commands need to be scheduled.
+  .modal-footer
+    %span.status Processing...

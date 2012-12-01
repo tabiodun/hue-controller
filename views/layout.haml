@@ -1,10 +1,12 @@
 !!!
 %html
   %head
-    %title Hue
+    %title Hue Controller
     %link{:rel => "stylesheet", :href => "/css/bootstrap.min.css"}
     %link{:rel => "stylesheet", :href => "/css/global.css"}
-    %link{:rel => "stylesheet", :href => "/css/#{action}.css"}
+    - unless defined?(no_action_css)
+      %link{:rel => "stylesheet", :href => "/css/#{action}.css"}
+
     %script{:src => "/js/jquery-1.8.3.min.js"}
     %script{:src => "/js/bootstrap.min.js"}
     %script{:src => "/js/helpers.js"}
@@ -20,7 +22,12 @@
           %ul.nav
             %li{:class => action == "control" ? "active": ""}
               %a{:href => "/control"} Control
+            %li{:class => action == "config" ? "active": ""}
+              %a{:href => "/config"} Configuration
 
-    = yield
+    .container
+      #info.alert.alert-info.hide
+
+      = yield
 
     %script{:src => "/js/#{action}.js"}
