@@ -23,14 +23,6 @@
     }
   });
 
-  function pad(number) {
-    if( number < 10 ) {
-      return "0" + number
-    } else {
-      return number;
-    }
-  }
-
   function format_command(data) {
     var cmd = {};
     cmd.on = data.on;
@@ -53,25 +45,6 @@
     return cmd;
   }
 
-  function format_time(time) {
-    return time.getUTCFullYear() + "-" + pad(time.getUTCMonth() + 1) + "-" + pad(time.getUTCDate()) + "T" + pad(time.getUTCHours()) + ":" + pad(time.getUTCMinutes()) + ":" + pad(time.getUTCSeconds());
-  }
-
-  function schedule_or_run(name, time, args) {
-    if( time > Date.now() ) {
-      var light = args.light;
-      delete(args.light);
-      args.method = "PUT";
-      args.address = "/api/" + hub_info.apikey + "/lights/" + light + "/state";
-
-      return {path: "schedules", type: "POST", data: {name: name, time: format_time(time), command: args}};
-
-    } else {
-      var light = args.light;
-      delete(args.light);
-      return {path: "lights/" + light + "/state", type: "PUT", data: args};
-    }
-  }
 
   $("form").submit(function(event) {
     event.preventDefault();
@@ -138,7 +111,7 @@
       }
 
       for( var light in inactive_lights ) {
-        Helper.queue_request(schedule_or_run(data.name + ": Reset Light " + light, time, {on: false, light: light}));
+        Helper.queue_request([data.name + ": Reset Light " + light, time, {on: false, light: light}]);
       }
     }
 
@@ -153,7 +126,7 @@
         var cmd = format_command(data);
         cmd.light = data.lights[j];
 
-        Helper.queue_request(schedule_or_run(data.name + ": Run " + i + ", Light " + j, interval_time, cmd));
+        Helper.queue_request([data.name + ": Run " + i + ", Light " + j, interval_time, cmd]);
       }
 
       offset += data.interval;
@@ -163,7 +136,12 @@
       var modal = $("#progress-modal");
       modal.find(".modal-header h3").text("Completed");
       modal.find(".modal-body p").addClass("text-success").text("Finished queuing jobs!");
-      modal.find(".modal-footer").html("<a href='/schedules' class='btn'>View Schedule</a><a href='/control' class='btn btn-inverse'>Queue another job</a>");
-    }, function() { $("#progress-modal").modal("hide"); });
+      modal.find(".modal-footer").html("<a href='/schedules' class='btn'>View Schedule</a><a href='#' class='btn btn-inverse' data-dismiss='modal'>Queue another job</a>");
+      $("form input[type='submit']").button("reset");
+
+    }, function() {
+      $("#progress-modal").modal("hide");
+      $("form input[type='submit']").button("reset");
+   });
   });
 })();

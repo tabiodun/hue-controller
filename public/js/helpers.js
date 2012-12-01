@@ -28,12 +28,27 @@ var Helper = {
     this.request_queue.push(args);
   },
 
+  schedule_or_run: function(name, time, args) {
+    if( time > Date.now() ) {
+      var light = args.light;
+      delete(args.light);
+      var address = "/api/" + hub_info.apikey + "/lights/" + light + "/state";
+
+      return {path: "schedules", type: "POST", data: {name: name, time: time.toISOString(), command: {method: "PUT", address: address, body: args}}};
+
+    } else {
+      var light = args.light;
+      delete(args.light);
+      return {path: "lights/" + light + "/state", type: "PUT", data: args};
+    }
+  },
+
   process_queue: function(status, oncomplete, onerror) {
     var offset = 0, max_offset = this.request_queue.length;
     var scope = this;
 
     var send_request = function() {
-      var args = $.extend(scope.request_queue[offset], {
+      var args = $.extend(scope.schedule_or_run(scope.request_queue[offset][0], scope.request_queue[offset][1], scope.request_queue[offset][2]), {
         success: function(res) {
           // Make sure our request succeeded
           var errors = [];
@@ -49,7 +64,7 @@ var Helper = {
             return;
           }
 
-          status.text("Processed " + offset + " of " + total);
+          status.text("Processed " + offset + " of " + max_offset);
           offset += 1;
 
           // Done
