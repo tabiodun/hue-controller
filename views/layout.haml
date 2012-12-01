@@ -22,7 +22,9 @@
           %ul.nav
             %li{:class => action == "control" ? "active": ""}
               %a{:href => "/control"} Control
-            %li{:class => action == "config" ? "active": ""}
+
+          %ul.nav.pull-right
+            %li{:class => (action == "config-new" || action == "config-update") ? "active": ""}
               %a{:href => "/config"} Configuration
 
     .container
