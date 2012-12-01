@@ -5,6 +5,7 @@ require "yaml"
 require "json"
 require "uri"
 require "net/http"
+require "digest/sha1"
 
 $LOAD_PATH.unshift(File.expand_path("../", __FILE__))
 
