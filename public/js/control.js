@@ -34,7 +34,6 @@
   function format_command(data) {
     var cmd = {};
     cmd.on = data.on;
-    cmd.on = "true";
     if( typeof(data.transitiontime) == "number" ) cmd.transitiontime = data.transitiontime;
     if( typeof(data.bri) == "number" ) cmd.bri = data.bri;
 
