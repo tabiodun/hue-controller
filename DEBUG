@@ -1,0 +1,17 @@
+Local scripts used to test functionality
+
+def post_data(path, type, args={})
+  uri = URI("http://192.168.1.###/api/[api key]/#{path}")
+
+  http = Net::HTTP.new(uri.host, uri.port)
+  if type == "get"
+    res = http.request_get(uri.request_uri)
+  else
+    res = http.send("request_#{type}", uri.request_uri, args.to_json)
+  end
+  res.body
+end
+
+500.times do |i|
+  puts post_data("schedules", "post", {:name => "Test", :time => (Time.now.utc + 86400).strftime("%Y-%m-%dT%H:%M:%S"), :command => {:method => "PUT", :address => "/api/[api key]/lights/4/state", :body => {:on => on, :transitiontime => 0}}})
+end
