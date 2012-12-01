@@ -1,0 +1,6 @@
+%h1 Hue Controller
+- if $config
+  %p.lead Welcome to the hue controller home page, use the menu bar above to control some aspect of your Hue lights.
+- else
+  %p.lead Welcome! You will need to configure your Hue hub to allow this to make API requests.
+  %a.btn.btn-inverse{:href => "/config"} Configure
