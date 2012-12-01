@@ -33,7 +33,7 @@ $("form").submit(function(event) {
         }
       },
       success: function() {
-        $("#auth-modal").hide();
+        $("#auth-modal").modal("hide");
         window.location = "/";
       }
     });

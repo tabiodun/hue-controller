@@ -1,5 +1,4 @@
 get "/setup" do
-  require "digest/sha1"
   @username = Digest::SHA1.hexdigest(rand(30 ** 30).to_s)
 
   haml :setup
@@ -18,7 +17,7 @@ post "/setup" do
   elsif res["error"]
     [400, res["error"]["description"]]
   elsif res["success"]
-    $config = {:auth => {:username => params[:username]}}
+    $config = {:ip => params[:ip], :apikey => params[:username]}
 
     unless File.directory?("./config/")
       require "fileutils"
