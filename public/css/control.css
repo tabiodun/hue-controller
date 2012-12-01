@@ -1,0 +1,20 @@
+#dates select {
+  height: 20px;
+  line-height: 20px;
+}
+
+#dates .at {
+  margin: 0 4px 0 4px;
+}
+
+#dates .push {
+  line-height: 25px;
+}
+
+#job_start_year {
+  width: 70px;
+}
+
+#job_start_hour, #job_start_minute, #job_start_second {
+  width: 50px;
+}
