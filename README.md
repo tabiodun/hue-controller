@@ -9,3 +9,9 @@ Running
 You will need ruby installed (this is all tested against ruby-1.9.3-p327, but any ruby-1.9.3 should work.
 
 Run `bundle install` in the directory to install the necessary gems, and then just `thin -R config.ru -p 9200 start` and that's it. You can then navigate to localhost:9200 and play with this.
+
+Contributing
+-
+Pull requests are more than welcome if you want to add new functionality or ways of extending the Hue lightbulbs.
+
+You can find documentation on the API at: http://blog.ef.net/2012/11/02/philips-hue-api.html
