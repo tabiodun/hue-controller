@@ -8,6 +8,8 @@ Running
 -
 You will need ruby installed (this is all tested against ruby-1.9.3-p327, but any ruby-1.9.3 should work.
 
+If you don't have bundler installed yet, you will need to do `gem install bundler` before running `bundle install`.
+
 Run `bundle install` in the directory to install the necessary gems, and then just `thin -R config.ru -p 9200 start` and that's it. You can then navigate to localhost:9200 and play with this.
 
 Contributing
