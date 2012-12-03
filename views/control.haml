@@ -24,9 +24,9 @@
   .control-group
     %label.control-label{:for => "job_bri"} Brightness
     .controls
-      %input.input-mini{:type => "number", :id => "job_bri", :placeholder => 254, :min => 0, :max => 254, :step => 1}
+      %input.input-mini{:type => "number", :id => "job_bri", :placeholder => $hue[:bri][:max], :min => $hue[:bri][:min], :max => $hue[:bri][:max], :step => 1}
       %span.help-inline
-        0 (off) - 254 (max brightness)
+        #{$hue[:bri][:min]} (off) - #{$hue[:bri][:max]} (max brightness)
 
   .tabbable.tabs-left
     %ul.nav.nav-tabs

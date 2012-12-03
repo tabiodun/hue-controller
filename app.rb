@@ -15,4 +15,6 @@ else
   $config = {}
 end
 
+$hue = YAML::load_file("./config/hue.yml")
+
 Dir["./controllers/*.rb"].each {|f| require f}
