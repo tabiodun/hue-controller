@@ -1,6 +1,28 @@
-%h1 Hue Controller
-- if $config
-  %p.lead Welcome to the hue controller home page, use the menu bar above to control some aspect of your Hue lights.
-- else
+- unless $config
+  %h1 Hue Controller
   %p.lead Welcome! You will need to configure your Hue hub to allow this to make API requests.
   %a.btn.btn-inverse{:href => "/config"} Configure
+- else
+  %h1 Light Status
+
+  %a.btn.btn-inverse#refresh-lights{:href => "#", "data-loading-text" => "Loading..."} Refresh Data
+
+  .pull-right
+    %a.btn.btn-success.disabled#lights-on{:href => "#", "data-loading-text" => "Changing...", "data-state" => "true"} All Lights On
+    %a.btn.btn-danger.disabled#lights-off{:href => "#", "data-loading-text" => "Changing...", "data-state" => "false"} All Lights Off
+
+  %table.table.table-striped.table-bordered#lights
+    %thead
+      %tr
+        %th.center Status
+        %th Name
+        %th.center Bri
+        %th.center Color
+        %th.center Alert
+        %th Type
+        %th.center Model ID
+        %th.center Clear Schedue
+        %th.center Toggle
+
+    %tbody
+

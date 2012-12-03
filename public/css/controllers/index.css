@@ -6,8 +6,17 @@
   width: 100%;
 }
 
+#lights .center {
+  text-align: center;
+}
+
 #lights .colorblock {
   height: 20px;
   width: 20px;
   border: 1px solid black;
+  display: inline-block;
+}
+
+#lights-on {
+  margin-right: 12px;
 }
