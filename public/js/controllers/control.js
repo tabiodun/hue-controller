@@ -1,9 +1,26 @@
 (function() {
+  var supports_colorpicker = document.getElementById("job_colorpicker").type == "color";
   $(".tabbable ul li a").click(function(event) {
       event.preventDefault();
       $(this).tab("show");
-    });
 
+      if( supports_colorpicker ) $("#use_colorpicker").trigger("change");
+  });
+
+  if( supports_colorpicker ) {
+    // Toggle colorpicker and see if it's enableable
+    $("#use_colorpicker").change(function() {
+      var val = $(this).is(":visible") && $(this).val() == "true";
+      $("#job_hue, #job_sat, #job_bri").closest(".control-group")[val ? "hide" : "show"]();
+      $("#job_colorpicker").closest(".control-group")[val ? "show" : "hide"]();
+    });
+    $("#use_colorpicker").trigger("change");
+  } else {
+    $("#job_hue, #job_sat, #job_bri").closest(".control-group").show();
+    $("#use_colorpicker, #job_colorpicker").closest(".control-group").hide();
+  }
+
+  // Figure out the lights available
   Helper.request({
     path: "lights",
     type: "GET",
@@ -52,8 +69,11 @@
 
     // Parse the data for sanity
     var data = {}, errors = false;
-    $("form").find("input[type='number'], input[type='text'], select").each(function() {
+    $("form").find("input[type='number'], input[type='text'], input[type='color'], select").each(function() {
       var row = $(this);
+      if( !row.is(":visible") ) return;
+      if( !row.attr("id").match(/^job_/) ) return;
+
       var key = row.attr("id").replace("job_", "");
       var val = row.val();
       if( val == "" ) return;
@@ -84,7 +104,22 @@
 
     if( errors == true ) return;
     $(this).find("input[type='submit']").button("loading");
-    $("#progress-modal").modal({backdrop: "static", keyboard: false});
+    $("#progress-modal").modal();
+
+    // Convert the hex color into the hue/sat/bri fields
+    if( data.colorpicker ) {
+      // Abuse the fact that browsers return rgb(#, #, #) when we enter a hex color
+      $("#job_colorpicker").css({"background-color": data.colorpicker});
+      var rgb = $("#job_colorpicker").css("background-color");
+      $("#job_colorpicker").css({"background-color": ""});
+      rgb = rgb.match(/rgb\(([0-9]+), ([0-9]+), ([0-9]+)\)/);
+
+      var color = Helper.rgb_to_hsl(parseInt(rgb[1]), parseInt(rgb[2]), parseInt(rgb[3]));
+
+      data.hue = Math.round((color[0] * 360) * HueData.hue.base);
+      data.sat = Math.round(color[1] * 254);
+      data.bri = Math.round(color[2] * 254);
+    }
 
     // Figure out the date to schedule (if any)
     var hours = parseInt(data["start_hours"]);

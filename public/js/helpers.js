@@ -123,7 +123,7 @@ var Helper = {
     return this.DATA.ct[ct.toString()];
   },
 
-  // These functions were grabbed from http://mjijackson.com/2008/02/rgb-to-hsl-and-rgb-to-hsv-color-model-conversion-algorithms-in-javascript
+  // From http://mjijackson.com/2008/02/rgb-to-hsl-and-rgb-to-hsv-color-model-conversion-algorithms-in-javascript
   // so credit to him for the implementation.
   rgb_to_hsl: function(r, g, b) {
     r /= 255, g /= 255, b /= 255;
@@ -144,5 +144,5 @@ var Helper = {
     }
 
     return [h, s, l];
-  },
+  }
 };

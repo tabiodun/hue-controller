@@ -21,13 +21,6 @@
         %option{:value => "false"} Off
       %span.help-inline
 
-  .control-group
-    %label.control-label{:for => "job_bri"} Brightness
-    .controls
-      %input.input-mini{:type => "number", :id => "job_bri", :placeholder => $hue[:bri][:max], :min => $hue[:bri][:min], :max => $hue[:bri][:max], :step => 1}
-      %span.help-inline
-        #{$hue[:bri][:min]} (off) - #{$hue[:bri][:max]} (max brightness)
-
   .tabbable.tabs-left
     %ul.nav.nav-tabs
       %li.active
@@ -38,10 +31,19 @@
     .tab-content
       .tab-pane.active#huesat
         .control-group
+          %label.control-label Color Picker?
+          .controls
+            %select.input-small{:id => "use_colorpicker"}
+              %option{:value => "true", :selected => true} Yes
+              %option{:value => "false"} No
+
+            %span.help-inline
+              Whether to use a color picker or raw input for lights.
+
+        .control-group
           %label.control-label{:for => "job_hue"} Hue
           .controls
-            %input.input-mini{:type => "number", :id => "job_hue", :placeholder => $hue[:hue][:max], :min => $hue[:hue][:min], :max => $hue[:hue][:max], :step => 1}
-            -#%input.btn.btn-info.btn-mini{:type => :button, :value => "Color Picker"}
+            %input.input-mini{:id => "job_hue", :placeholder => $hue[:hue][:max], :min => $hue[:hue][:min], :max => $hue[:hue][:max], :step => 1}
             %span.help-inline
               #{$hue[:hue][:min]} - #{$hue[:hue][:max]}
 
@@ -52,6 +54,11 @@
             %span.help-inline
               #{$hue[:sat][:min]} - #{$hue[:sat][:max]}
 
+        .control-group
+          %label.control-label{:for => "job_colorpicker"} Color
+          .controls
+            %input.input-mini{:id => "job_colorpicker", :type => "color", :value => "#0004FF"}
+
       .tab-pane#ct
         .control-group
           %label.control-label{:for => "job_ct"} Color Temperature
@@ -59,6 +66,13 @@
             %input.input-mini{:type => "number", :id => "job_ct", :placeholder => $hue[:ct][:max], :min => $hue[:ct][:min], :max => $hue[:ct][:max], :step => 1}
             %span.help-inline
               #{$hue[:ct][:min]} (cold/white) - #{$hue[:ct][:max]} (warm)
+
+  .control-group
+    %label.control-label{:for => "job_bri"} Brightness
+    .controls
+      %input.input-mini{:type => "number", :id => "job_bri", :placeholder => $hue[:bri][:max], :min => $hue[:bri][:min], :max => $hue[:bri][:max], :step => 1}
+      %span.help-inline
+        #{$hue[:bri][:min]} (off) - #{$hue[:bri][:max]} (max brightness)
 
   .control-group
     %label.control-label{:for => "job_alert"} Alert
