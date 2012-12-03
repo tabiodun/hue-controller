@@ -2,3 +2,18 @@
 :bri:
   :min: 0
   :max: 254
+
+:hue:
+  :min: 0
+  :max: 65535
+  -- Using 182.02 doesn't seem to provide the right colors, it's possible the formula I'm using is wrong
+  -- but 172 seems to match them pretty well, not perfectly, but decently.
+  :conversion: 172
+
+:sat:
+  :min: 0
+  :max: 254
+
+:ct:
+  :min: 154
+  :max: 500

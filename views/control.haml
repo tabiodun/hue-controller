@@ -40,25 +40,25 @@
         .control-group
           %label.control-label{:for => "job_hue"} Hue
           .controls
-            %input.input-mini{:type => "number", :id => "job_hue", :placeholder => 3100, :min => 0, :max => 65535, :step => 1}
+            %input.input-mini{:type => "number", :id => "job_hue", :placeholder => $hue[:hue][:max], :min => $hue[:hue][:min], :max => $hue[:hue][:max], :step => 1}
             -#%input.btn.btn-info.btn-mini{:type => :button, :value => "Color Picker"}
             %span.help-inline
-              0 - 65,535
+              #{$hue[:hue][:min]} - #{$hue[:hue][:max]}
 
         .control-group
           %label.control-label{:for => "job_sat"} Saturation
           .controls
-            %input.input-mini{:type => "number", :id => "job_sat", :placeholder => 254, :min => 0, :max => 254, :step => 1}
+            %input.input-mini{:type => "number", :id => "job_sat", :placeholder => $hue[:sat][:max], :min => $hue[:sat][:min], :max => $hue[:sat][:max], :step => 1}
             %span.help-inline
-              0 - 254
+              #{$hue[:sat][:min]} - #{$hue[:sat][:max]}
 
       .tab-pane#ct
         .control-group
           %label.control-label{:for => "job_ct"} Color Temperture
           .controls
-            %input.input-mini{:type => "number", :id => "job_ct", :placeholder => 154, :min => 154, :max => 500, :step => 1}
+            %input.input-mini{:type => "number", :id => "job_ct", :placeholder => $hue[:ct][:max], :min => $hue[:ct][:min], :max => $hue[:ct][:max], :step => 1}
             %span.help-inline
-              154 (cold/white) - 500 (warm)
+              #{$hue[:ct][:min]} (cold/white) - #{$hue[:ct][:max]} (warm)
 
   .control-group
     %label.control-label{:for => "job_alert"} Alert
