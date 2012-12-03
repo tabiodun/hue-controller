@@ -13,7 +13,7 @@
     %script{:src => "/js/data.js"}
     :javascript
       var hub_info = #{$config.to_json};
-      var hue = #{$hue.to_json};
+      var HueData = #{$hue.to_json};
 
   %body
     .navbar.navbar-fixed-top
