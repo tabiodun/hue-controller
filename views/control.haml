@@ -33,7 +33,7 @@
       %li.active
         %a{:href => "#huesat", "data-toggle" => "huesat"} Hue/Saturation
       %li
-        %a{:href => "#ct", "data-toggle" => "ct"} Color Temperture
+        %a{:href => "#ct", "data-toggle" => "ct"} Color Temperature
 
     .tab-content
       .tab-pane.active#huesat
@@ -54,7 +54,7 @@
 
       .tab-pane#ct
         .control-group
-          %label.control-label{:for => "job_ct"} Color Temperture
+          %label.control-label{:for => "job_ct"} Color Temperature
           .controls
             %input.input-mini{:type => "number", :id => "job_ct", :placeholder => $hue[:ct][:max], :min => $hue[:ct][:min], :max => $hue[:ct][:max], :step => 1}
             %span.help-inline
