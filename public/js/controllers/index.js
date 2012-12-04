@@ -71,6 +71,10 @@
       html += "</tr>";
     }
 
+    if( html == "" ) {
+      html = "<tr><td colspan='9' class='center'><strong class='text-error'>No lights found</strong></td></tr>";
+    }
+
     $("#lights tbody").html(html);
   }
 
