@@ -161,7 +161,7 @@
         var cmd = format_command(data);
         cmd.light = data.lights[j];
 
-        Helper.queue_request([data.name + ": Run " + i + ", Light " + j, interval_time, cmd]);
+        Helper.queue_request([data.name + ": Run " + i + ", Light " + cmd.light, interval_time, cmd]);
       }
 
       offset += data.interval;
