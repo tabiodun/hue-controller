@@ -22,6 +22,14 @@
           %a.brand{:href => "/"} Hue Controller
 
           %ul.nav
+            %li{:class => action == "index" ? "active": ""}
+              %a{:href => "/"} Lights
+
+          %ul.nav
+            %li{:class => action == "schedules" ? "active": ""}
+              %a{:href => "/schedules"} Schedules
+
+          %ul.nav
             %li{:class => action == "control" ? "active": ""}
               %a{:href => "/control"} Control
 

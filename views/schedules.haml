@@ -1,0 +1,20 @@
+%h1 Schedules
+
+%a.btn.btn-inverse#refresh-data{:href => "#", "data-loading-text" => "Loading..."} Refresh Data
+
+.pull-right
+  %a.btn.btn-danger.disabled#clear-schedules{:href => "#", "data-loading-text" => "Clearing..."} Clear Schedule
+
+%table.table.table-striped.table-bordered#schedules
+  %thead
+    %tr
+      %th Name
+      %th Run On
+      %th.center Light
+      %th.center State
+      %th.center Bri
+      %th.center Color
+      %th.center Delete
+
+  %tbody
+
