@@ -34,14 +34,7 @@
       if( light.state.colormode == "xy" ) {
         html += "<td class='center'> X: <strong>" + light.state.xy[0] + "</strong>, Y: <strong>" + light.state.xy[1] + "</strong></td>";
       } else {
-        var color;
-        if( light.state.colormode == "ct" ) {
-          color = Helper.ct_to_rgb(light.state.ct);
-        } else if( light.state.colormode == "hs" ) {
-          color = "hsl(" + (light.state.hue / 182.02) + "," + (light.state.sat / HueData.sat.max) * 100 + "%," + (light.state.bri / (HueData.bri.max + 146)) * 100 + "%)";
-        }
-
-        html += "<td class='center'><div class='colorblock' style='background-color: " + color + ";'></div></td>";
+        html += "<td class='center'><div class='colorblock' style='background-color: " + Helper.light_color(light.state) + ";'></div></td>";
       }
 
       // ALERT
@@ -94,7 +87,7 @@
         light_schedules = {};
         for( var key in data.schedules ) {
           var schedule = data.schedules[key];
-          var light = schedule.command.address.match(/lights\/([0-9]+)\//)
+          var light = schedule.command.address.match(/lights\/([0-9]+)\//);
           if( light && light[1] ) {
             light = light[1];
             if( !light_schedules[light] ) light_schedules[light] = [];

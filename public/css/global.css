@@ -1,3 +1,10 @@
 body {
   margin-top: 60px;
 }
+
+.colorblock {
+  height: 20px;
+  width: 20px;
+  border: 1px solid black;
+  display: inline-block;
+}

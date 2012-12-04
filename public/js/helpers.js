@@ -3,6 +3,17 @@ var Helper = {
     $("#error").removeClass("hide").find("span").html(error);
   },
 
+  light_color: function(light) {
+    var color;
+    if( light.colormode == "ct" ) {
+      color = Helper.ct_to_rgb(light.ct);
+    } else if( light.colormode == "hs" ) {
+      color = "hsl(" + (light.hue / 182.02) + "," + (light.sat / HueData.sat.max) * 100 + "%," + (light.bri / (HueData.bri.max + 146)) * 100 + "%)";
+    }
+
+    return color;
+  },
+
   field_error: function(field, text) {
     var group = $("#" + field).closest(".control-group");
     group.addClass("error");
