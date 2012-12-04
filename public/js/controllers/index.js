@@ -32,7 +32,7 @@
       // COLOR
       // Need to figure out how to represent the X/Y coords and color temps cleanly
       if( light.state.colormode == "xy" ) {
-        html += "<td class='center'> X: <strong>" + light.state.xy[0] + "</strong>, Y: <strong>" + light.state.xy[1] + "</strong></td>";
+        html += "<td class='center'>X: <strong>" + light.state.xy[0] + "</strong>, Y: <strong>" + light.state.xy[1] + "</strong></td>";
       } else {
         html += "<td class='center'><div class='colorblock' style='background-color: " + Helper.light_color(light.state) + ";'></div></td>";
       }
