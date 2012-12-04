@@ -1,7 +1,7 @@
 (function() {
   var schedule_ids = [];
 
-  function render_schedules(schedules) {
+  function render_schedules(light_names, schedules) {
     var html = "";
     for( var id in schedules ) {
       var schedule = schedules[id];
@@ -9,7 +9,7 @@
 
       var light = schedule.command.address.match(/lights\/([0-9]+)\//);
       if( light && light[1] ) {
-        light = light[1];
+        light = light_names[light[1]];
       } else {
         light = null;
       }
@@ -27,7 +27,7 @@
       html += "<td>" + time.toLocaleString() + "</td>";
 
       // LIGHT
-      html += "<td class='center'>" + (light || "---") + "</td>";
+      html += "<td>" + (light || "---") + "</td>";
 
       // STATE
       if( typeof(schedule.command.body.on) == "boolean" ) {
@@ -111,8 +111,13 @@
 
         if( onload ) onload();
 
+        var light_names = [];
+        for( var id in data.lights ) {
+          light_names[id] = data.lights[id].name;
+        }
+
         // Render the display table
-        render_schedules(data.schedules);
+        render_schedules(light_names, data.schedules);
       }
     });
   }
