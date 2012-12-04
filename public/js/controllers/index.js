@@ -54,17 +54,17 @@
 
       // CLEAR SCHEDULES
       if( light_schedules[id] && light_schedules[id] > 0 ) {
-        html += "<td class='center'><a href='#' class='btn clear-schedules' data-light='" + id + "'>Clear " + light_schedules[id] + "</a></td>";
+        html += "<td class='center'><a href='#' class='btn btn-mini btn-danger clear-schedules' data-light='" + id + "'>Clear " + light_schedules[id] + "</a></td>";
       } else {
-        html += "<td class='center'><a href='#' class='btn disabled'>Clear 0</a></td>";
+        html += "<td class='center'><a href='#' class='btn btn-mini disabled'>Clear 0</a></td>";
       }
 
       // STATE
       html += "<td class='center'>";
       if( light.state.on ) {
-        html += "<a href='#' class='btn btn-danger toggle-light' data-state='false' data-light='" + id + "'>Off</a>";
+        html += "<a href='#' class='btn btn-danger btn-mini toggle-light' data-state='false' data-light='" + id + "'>Off</a>";
       } else {
-        html += "<a href='#' class='btn btn-success toggle-light' data-state='true' data-light='" + id + "'>On</a>";
+        html += "<a href='#' class='btn btn-success btn-mini toggle-light' data-state='true' data-light='" + id + "'>On</a>";
       }
       html += "</td>";
 
