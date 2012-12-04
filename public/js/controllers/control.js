@@ -171,8 +171,7 @@
       var modal = $("#progress-modal");
       modal.find(".modal-header h3").text("Completed");
       modal.find(".modal-body p").addClass("text-success").text("Finished queuing jobs!");
-//      modal.find(".modal-footer").html("<a href='/schedules' class='btn'>View Schedule</a><a href='#' class='btn btn-inverse' data-dismiss='modal'>Queue another job</a>");
-      modal.find(".modal-footer").html("<a href='#' class='btn btn-inverse' data-dismiss='modal'>Queue another job</a>");
+      modal.find(".modal-footer").html("<a href='/schedules' class='btn'>View Schedules</a><a href='/' class='btn btn-info'>View Lights</a><a href='#' class='btn btn-inverse' data-dismiss='modal'>Queue another job</a>");
       $("form input[type='submit']").button("reset");
 
     }, function() {
