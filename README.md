@@ -11,9 +11,11 @@ The general web app will work under most modern browser browsers. IE8 and below 
 Examples
 -
 
-Index page: [click here](https://github.com/zanker/hue-controller/blob/master/examples/index.png?raw=true)
+Light Status: [click here](https://github.com/zanker/hue-controller/blob/master/examples/index.png?raw=true)
 
-Control page: [click here](https://github.com/zanker/hue-controller/blob/master/examples/control.png?raw=true)
+Light Control: [click here](https://github.com/zanker/hue-controller/blob/master/examples/control.png?raw=true)
+
+Schedule: [click here](https://github.com/zanker/hue-controller/blob/master/examples/schedules.png?raw=true)
 
 Running
 -
